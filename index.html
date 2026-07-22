@@ -3,1169 +3,605 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Payment Gateway</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<title>Premium OTT Plans</title>
 <style>
-:root {
---bg-color: #f4f7fe;
---text-main: #2b3674;
---text-muted: #707eae;
---card-bg: #ffffff;
---border-color: #e0e5f2;
---primary: #4318ff;
---primary-light: #e9edf7;
---secondary-bg: #f4f7fe;
---warning-bg: #fffbeb;
---warning-border: #fde68a;
---warning-text: #92400e;
---warning-icon: #d97706;
---shadow: 0 10px 20px rgba(224, 229, 242, 0.5);
---qr-bg: #ffffff;
---step-bg: #e9edf7;
-}
-[data-theme="dark"] {
---bg-color: #0b0e14;
---text-main: #ffffff;
---text-muted: #8b99b5;
---card-bg: #131722;
---border-color: #1f2537;
---primary: #8792e8;
---primary-light: #111520;
---secondary-bg: #1a202f;
---warning-bg: #1e1b19;
---warning-border: #33281c;
---warning-text: #8b99b5;
---warning-icon: #f3ba2f;
---shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
---qr-bg: #ffffff;
---step-bg: #272f45;
-}
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap');
+
 * {
-margin: 0;
-padding: 0;
-box-sizing: border-box;
-font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
 }
+
 body {
-background-color: var(--bg-color);
-color: var(--text-main);
-display: flex;
-justify-content: center;
-transition: background-color 0.3s, color 0.3s;
+    background: #050505;
+    color: #fff;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 50px 20px;
+    overflow-x: hidden;
 }
-.container {
-width: 100%;
-max-width: 400px;
-padding: 20px;
-position: relative;
+
+.video-bg {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    transform: translateX(-50%) translateY(-50%);
+    z-index: -2;
+    object-fit: cover;
 }
-.theme-toggle {
-position: absolute;
-top: 20px;
-right: 20px;
-background-color: var(--card-bg);
-border: 1px solid var(--border-color);
-color: var(--text-main);
-width: 36px;
-height: 36px;
-border-radius: 50%;
-display: flex;
-align-items: center;
-justify-content: center;
-cursor: pointer;
-font-size: 18px;
-box-shadow: var(--shadow);
-transition: all 0.3s;
+
+.bg-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: -1;
 }
-.header {
-text-align: center;
-margin-bottom: 25px;
-margin-top: 10px;
+
+.pricing-container {
+    max-width: 900px;
+    width: 100%;
+    text-align: center;
+    z-index: 1;
 }
-.secure-badge {
-display: inline-flex;
-align-items: center;
-background-color: var(--primary-light);
-border: 1px solid var(--border-color);
-padding: 6px 12px;
-border-radius: 20px;
-font-size: 10px;
-font-weight: 600;
-letter-spacing: 1px;
-color: var(--primary);
-margin-bottom: 20px;
+
+.main-title {
+    font-size: 3rem;
+    letter-spacing: 3px;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    font-weight: 800;
+    background: linear-gradient(45deg, #00f2fe, #4facfe, #a529ff, #00f2fe);
+    background-size: 300%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 0 10px rgba(79,172,254,0.5));
+    animation: textGradient 4s ease infinite;
 }
-.secure-badge::before {
-content: "";
-width: 6px;
-height: 6px;
-background-color: var(--primary);
-border-radius: 50%;
-margin-right: 8px;
+
+@keyframes textGradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
 }
-.title {
-font-size: 26px;
-font-weight: 700;
-margin-bottom: 15px;
-color: var(--text-main);
-}
-.title span {
-color: var(--primary);
-}
+
 .subtitle {
-font-size: 13px;
-color: var(--text-muted);
-line-height: 1.6;
-min-height: 42px; 
+    font-size: 1.2rem;
+    letter-spacing: 2px;
+    margin-bottom: 50px;
+    color: #a0aab2;
+    text-transform: uppercase;
+    animation: fadeIn 2s ease forwards;
 }
-.typing-cursor {
-display: inline-block;
-width: 2px;
-height: 14px;
-background-color: var(--primary);
-animation: blink 0.75s step-end infinite;
-vertical-align: middle;
-margin-left: 2px;
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
 }
-@keyframes blink {
-from, to { opacity: 1; }
-50% { opacity: 0; }
+
+.plans-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+    justify-items: center;
 }
-.pricing-section {
-margin-bottom: 25px;
+
+.plan-card:nth-child(5) {
+    grid-column: 1 / -1;
 }
-.pricing-title {
-font-size: 15px;
-font-weight: 600;
-color: var(--text-main);
-margin-bottom: 15px;
-text-align: center;
-display: flex;
-align-items: center;
-justify-content: center;
+
+.plan-card {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 20px;
+    padding: 40px 30px;
+    width: 100%;
+    max-width: 350px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    opacity: 0;
+    animation: slideUp 0.8s ease forwards;
 }
-.pricing-title::before, .pricing-title::after {
-content: "";
-flex: 1;
-border-bottom: 1px solid var(--border-color);
-margin: 0 15px;
+
+.plan-card:nth-child(1) { animation-delay: 0.1s; }
+.plan-card:nth-child(2) { animation-delay: 0.3s; }
+.plan-card:nth-child(3) { animation-delay: 0.5s; }
+.plan-card:nth-child(4) { animation-delay: 0.7s; }
+.plan-card:nth-child(5) { animation-delay: 0.9s; }
+
+@keyframes slideUp {
+    from { transform: translateY(40px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
 }
-.pricing-grid {
-display: grid;
-grid-template-columns: repeat(2, 1fr);
-gap: 10px;
+
+.plan-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.08) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
 }
-.pricing-card {
-background-color: var(--card-bg);
-border: 1px solid var(--border-color);
-border-radius: 12px;
-padding: 15px 10px;
-text-align: center;
-box-shadow: 0 2px 10px rgba(0,0,0,0.02);
-cursor: pointer;
-transition: all 0.2s ease;
+
+.plan-card:hover::before {
+    opacity: 1;
 }
-.pricing-card.active-plan {
-border-color: var(--primary);
-background-color: var(--secondary-bg);
-box-shadow: 0 4px 10px rgba(67, 24, 255, 0.1);
+
+.plan-card:hover {
+    transform: translateY(-10px);
+    border-color: #4facfe;
+    box-shadow: 0 15px 40px rgba(79, 172, 254, 0.4);
+    background: rgba(255, 255, 255, 0.1);
 }
-.pricing-card.full-width {
-grid-column: span 2;
+
+.plan-card h2 {
+    font-size: 1.6rem;
+    margin-bottom: 20px;
+    font-weight: 600;
+    color: #e0e0e0;
+    letter-spacing: 1px;
 }
-.plan-name {
-font-size: 11px;
-font-weight: 600;
-color: var(--text-muted);
-text-transform: uppercase;
-letter-spacing: 0.5px;
-margin-bottom: 5px;
+
+.price {
+    font-size: 3rem;
+    font-weight: 800;
+    margin-bottom: 5px;
+    color: #ffffff;
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+    line-height: 1;
 }
-.plan-price {
-font-size: 20px;
-font-weight: 700;
-color: var(--primary);
-margin-bottom: 5px;
+
+.price-usd {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #4facfe;
+    margin-bottom: 15px;
 }
-.plan-validity {
-font-size: 11px;
-color: var(--text-main);
-font-weight: 500;
+
+.validity {
+    font-size: 1rem;
+    color: #b0b0b0;
+    margin-bottom: 35px;
+    font-weight: 300;
+    background: rgba(255,255,255,0.1);
+    padding: 8px 20px;
+    border-radius: 20px;
 }
-.coin-grid {
-display: grid;
-grid-template-columns: repeat(3, 1fr);
-gap: 10px;
-margin-bottom: 20px;
+
+.btn {
+    padding: 12px 30px;
+    background: transparent;
+    border: 2px solid #4facfe;
+    color: #4facfe;
+    border-radius: 25px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    width: 100%;
 }
-.coin-card {
-background-color: var(--card-bg);
-border: 1px solid var(--border-color);
-border-radius: 12px;
-padding: 15px 10px;
-text-align: center;
-cursor: pointer;
-transition: all 0.2s ease;
+
+.plan-card:hover .btn {
+    background: #4facfe;
+    color: #fff;
+    box-shadow: 0 0 15px rgba(79, 172, 254, 0.6);
 }
-.coin-card.active {
-border-color: var(--primary);
-background-color: var(--secondary-bg);
-box-shadow: 0 4px 10px rgba(67, 24, 255, 0.1);
+
+.popular-card {
+    border-color: rgba(79,172,254,0.5);
 }
-.coin-icon {
-width: 36px;
-height: 36px;
-border-radius: 10px;
-display: inline-flex;
-align-items: center;
-justify-content: center;
-font-weight: bold;
-font-size: 16px;
-margin-bottom: 10px;
-color: #fff;
+
+.popular-btn {
+    background: #4facfe;
+    color: #fff;
 }
-.bg-trx { background-color: #ff0013; }
-.bg-tron { background-color: #d11222; }
-.bg-usdt { background-color: #20c997; }
-.bg-binance { background-color: #f3ba2f; color: #000; }
-.bg-ton { background-color: #0098ea; }
-.bg-upi { background-color: #0070bc; }
-.coin-name {
-font-size: 11px;
-font-weight: 600;
-color: var(--text-muted);
-}
-.coin-card.active .coin-name {
-color: var(--primary);
-}
-.payment-section {
-background-color: var(--card-bg);
-border-radius: 16px;
-padding: 20px;
-margin-bottom: 20px;
-border: 1px solid var(--border-color);
-box-shadow: var(--shadow);
-}
-.selected-coin-header {
-display: flex;
-align-items: center;
-margin-bottom: 20px;
-padding-bottom: 20px;
-border-bottom: 1px solid var(--border-color);
-}
-.selected-coin-info h3 {
-font-size: 18px;
-margin-bottom: 4px;
-color: var(--text-main);
-font-weight: 600;
-}
-.selected-coin-info p {
-font-size: 12px;
-color: var(--text-muted);
-}
-.network-grid {
-display: grid;
-grid-template-columns: repeat(3, 1fr);
-gap: 10px;
-margin-bottom: 20px;
-}
-.network-card {
-background-color: var(--secondary-bg);
-border: 1px solid var(--border-color);
-border-radius: 8px;
-padding: 12px 5px;
-text-align: center;
-cursor: pointer;
-}
-.network-card.active {
-border-color: var(--primary);
-background-color: var(--primary-light);
-}
-.network-dot {
-width: 6px;
-height: 6px;
-border-radius: 50%;
-margin: 0 auto 8px auto;
-}
-.dot-erc { background-color: #4318ff; }
-.dot-trc { background-color: #ef5350; }
-.dot-bep { background-color: #ffca28; }
-.network-title {
-font-size: 11px;
-font-weight: bold;
-margin-bottom: 4px;
-color: var(--text-main);
-}
-.network-desc {
-font-size: 9px;
-color: var(--text-muted);
-}
-.qr-container {
-background-color: var(--qr-bg);
-padding: 10px;
-border-radius: 12px;
-width: 220px;
-height: 220px;
-margin: 0 auto 20px auto;
-display: flex;
-justify-content: center;
-align-items: center;
-border: 1px solid var(--border-color);
-}
-.qr-container img {
-width: 100%;
-height: 100%;
-object-fit: contain;
-border-radius: 8px;
-}
-.address-label {
-text-align: center;
-font-size: 10px;
-letter-spacing: 1px;
-color: var(--text-muted);
-margin-bottom: 10px;
-text-transform: uppercase;
-font-weight: 500;
-}
-.address-box {
-background-color: var(--secondary-bg);
-border-radius: 8px;
-padding: 15px;
-margin-bottom: 15px;
-border: 1px solid var(--border-color);
-}
-.address-text {
-font-family: monospace;
-font-size: 12px;
-color: var(--text-main);
-word-break: break-all;
-margin-bottom: 15px;
-line-height: 1.4;
-font-weight: 600;
-}
-.copy-btn {
-width: 100%;
-background-color: var(--primary);
-color: #ffffff;
-border: none;
-padding: 12px;
-border-radius: 6px;
-font-size: 14px;
-font-weight: 600;
-cursor: pointer;
-transition: opacity 0.2s;
-}
-.copy-btn:hover {
-opacity: 0.9;
-}
-.warning-box {
-background-color: var(--warning-bg);
-border: 1px solid var(--warning-border);
-border-radius: 12px;
-padding: 15px;
-display: flex;
-margin-bottom: 20px;
-}
-.warning-icon {
-color: var(--warning-icon);
-font-size: 20px;
-margin-right: 12px;
-}
-.warning-text {
-font-size: 12px;
-line-height: 1.5;
-color: var(--warning-text);
-}
-.instructions-section {
-background-color: var(--card-bg);
-border-radius: 16px;
-padding: 20px;
-margin-bottom: 20px;
-border: 1px solid var(--border-color);
-box-shadow: var(--shadow);
-}
-.section-title {
-font-size: 18px;
-font-weight: 700;
-margin-bottom: 20px;
-display: flex;
-align-items: center;
-color: var(--text-main);
-}
-.section-title span {
-margin-right: 10px;
-}
-.step-list {
-display: flex;
-flex-direction: column;
-gap: 20px;
-}
-.step {
-display: flex;
-}
-.step-number {
-width: 24px;
-height: 24px;
-background-color: var(--step-bg);
-color: var(--primary);
-border-radius: 6px;
-display: flex;
-align-items: center;
-justify-content: center;
-font-size: 12px;
-font-weight: bold;
-margin-right: 15px;
-flex-shrink: 0;
-}
-.step-content h4 {
-font-size: 14px;
-margin-bottom: 5px;
-color: var(--text-main);
-font-weight: 600;
-}
-.step-content p {
-font-size: 13px;
-color: var(--text-muted);
-line-height: 1.5;
-}
-.contact-list {
-display: flex;
-flex-direction: column;
-gap: 10px;
-}
-.contact-card {
-background-color: var(--secondary-bg);
-border: 1px solid var(--border-color);
-border-radius: 10px;
-padding: 15px;
-display: flex;
-align-items: center;
-text-decoration: none;
-transition: border-color 0.2s;
-}
-.contact-card:hover {
-border-color: var(--primary);
-}
-.contact-icon {
-width: 40px;
-height: 40px;
-background-color: var(--card-bg);
-border-radius: 10px;
-display: flex;
-align-items: center;
-justify-content: center;
-margin-right: 15px;
-color: var(--primary);
-font-size: 18px;
-border: 1px solid var(--border-color);
-}
-.contact-icon.email {
-color: #ef5350;
-}
-.contact-info {
-flex-grow: 1;
-}
-.contact-label {
-font-size: 10px;
-color: var(--text-muted);
-text-transform: uppercase;
-letter-spacing: 1px;
-margin-bottom: 2px;
-font-weight: 500;
-}
-.contact-value {
-font-size: 14px;
-font-weight: 600;
-color: var(--text-main);
-}
-.contact-arrow {
-color: var(--text-muted);
-}
-.footer-note-box {
-background-color: var(--card-bg);
-border: 1px solid var(--border-color);
-border-radius: 12px;
-padding: 20px;
-margin-bottom: 20px;
-text-align: center;
-}
-.footer-note-box p {
-font-size: 13px;
-color: var(--text-muted);
-line-height: 1.6;
-}
-.footer-note-box strong {
-color: var(--text-main);
-font-weight: 600;
-}
-.final-warning {
-text-align: center;
-font-size: 11px;
-color: var(--text-muted);
-margin-bottom: 40px;
-line-height: 1.5;
-}
-.pay-btn-upi {
-background-color: #0070bc;
-margin-top: 10px;
-}
+
 .modal-overlay {
-display: none;
-position: fixed;
-top: 0; left: 0; width: 100%; height: 100%;
-background: rgba(0, 0, 0, 0.6);
-z-index: 1000;
-justify-content: center;
-align-items: center;
-padding: 20px;
-backdrop-filter: blur(4px);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+    backdrop-filter: blur(5px);
 }
-.modal-content {
-background-color: var(--card-bg);
-border: 1px solid var(--border-color);
-border-radius: 16px;
-width: 100%;
-max-width: 500px;
-max-height: 85vh;
-overflow-y: auto;
-padding: 25px;
-position: relative;
-box-shadow: var(--shadow);
+
+.modal-box {
+    background: #1a1a2e;
+    padding: 30px;
+    border-radius: 15px;
+    width: 90%;
+    max-width: 400px;
+    border: 1px solid #4facfe;
+    box-shadow: 0 0 30px rgba(79, 172, 254, 0.2);
+    text-align: center;
+    max-height: 90vh;
+    overflow-y: auto;
 }
-.close-modal {
-position: absolute;
-top: 15px;
-right: 15px;
-background: var(--step-bg);
-border: none;
-width: 30px;
-height: 30px;
-border-radius: 50%;
-font-size: 18px;
-color: var(--primary);
-cursor: pointer;
-display: flex;
-align-items: center;
-justify-content: center;
-z-index: 10;
+
+.modal-box h3 {
+    margin-bottom: 25px;
+    color: #fff;
+    font-size: 1.4rem;
 }
-.modal-title {
-font-size: 18px;
-font-weight: 700;
-color: var(--text-main);
-margin-bottom: 15px;
-border-bottom: 1px solid var(--border-color);
-padding-bottom: 10px;
-display: flex;
-justify-content: space-between;
-align-items: center;
+
+.payment-methods {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 25px;
 }
-.admin-btn {
-font-size: 10px;
-background: var(--primary);
-color: white;
-border: none;
-padding: 4px 8px;
-border-radius: 4px;
-cursor: pointer;
+
+.payment-methods .btn {
+    background: rgba(79, 172, 254, 0.1);
+    padding: 10px 20px;
 }
-.modal-body h3 {
-font-size: 14px;
-color: var(--primary);
-margin: 15px 0 5px 0;
+
+.payment-methods .btn:hover {
+    background: #4facfe;
+    color: #fff;
 }
-.modal-body ul {
-padding-left: 20px;
-margin-bottom: 10px;
+
+.payment-details {
+    margin-bottom: 25px;
+    text-align: center;
 }
-.modal-body li, .modal-body p {
-font-size: 12px;
-color: var(--text-muted);
-line-height: 1.6;
-margin-bottom: 5px;
+
+.payment-details h4 {
+    margin-bottom: 15px;
+    color: #4facfe;
 }
-.modal-body blockquote {
-background-color: var(--warning-bg);
-border-left: 3px solid var(--warning-icon);
-padding: 12px;
-margin-top: 15px;
-border-radius: 6px;
-font-size: 11px;
-color: var(--warning-text);
-line-height: 1.5;
+
+.qr-box {
+    width: 180px;
+    height: 180px;
+    background: #fff;
+    padding: 10px;
+    border-radius: 10px;
+    margin: 0 auto 15px auto;
 }
-.tc-btn-container {
-text-align: center;
-margin-bottom: 20px;
-display: flex; 
-gap: 15px; 
-justify-content: center;
+
+.qr-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
 }
-.tc-btn {
-background: none;
-border: none;
-color: var(--primary);
-text-decoration: underline;
-cursor: pointer;
-font-size: 12px;
-font-weight: 600;
+
+.payment-details p {
+    font-size: 0.95rem;
+    color: #e0e0e0;
+    word-break: break-all;
+    background: rgba(255,255,255,0.05);
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px dashed rgba(255,255,255,0.2);
+    margin-bottom: 15px;
 }
-.ott-grid {
-display: grid;
-grid-template-columns: repeat(2, 1fr);
-gap: 10px;
-margin-top: 15px;
+
+.payment-details input {
+    width: 100%;
+    padding: 12px;
+    background: #050505;
+    border: 1px solid rgba(255,255,255,0.2);
+    color: #fff;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    outline: none;
 }
-.ott-item {
-display: flex;
-flex-direction: column;
-align-items: center;
-justify-content: center;
-gap: 5px;
-padding: 12px;
-background: var(--secondary-bg);
-border-radius: 8px;
-border: 1px solid var(--border-color);
-text-align: center;
-font-size: 11px;
-font-weight: 600;
-color: var(--text-main);
-transition: all 0.2s;
+
+.payment-details input[type="file"] {
+    background: #1a1a2e;
+    color: #a0aab2;
+    cursor: pointer;
 }
-.ott-status {
-font-size: 9px;
-padding: 3px 8px;
-border-radius: 12px;
-font-weight: bold;
+
+.payment-details input:focus {
+    border-color: #4facfe;
 }
-.status-online { background: #dcfce7; color: #166534; }
-.status-offline { background: #fee2e2; color: #991b1b; }
-[data-theme="dark"] .status-online { background: #14532d; color: #4ade80; }
-[data-theme="dark"] .status-offline { background: #7f1d1d; color: #f87171; }
-.admin-mode .ott-item { cursor: pointer; border: 1px dashed var(--primary); }
-.admin-mode .ott-item:hover { background: var(--card-bg); }
+
+.cancel-btn {
+    border-color: #ff4b4b;
+    color: #ff4b4b;
+    margin-top: 10px;
+}
+
+.cancel-btn:hover {
+    background: #ff4b4b;
+    color: #fff;
+    box-shadow: 0 0 15px rgba(255, 75, 75, 0.4);
+}
+
+.success-btn {
+    background: #4facfe;
+    color: #fff;
+}
+
+.check-icon {
+    font-size: 60px;
+    color: #00e676;
+    margin-bottom: 15px;
+    animation: bounceIn 0.5s ease;
+}
+
+@keyframes bounceIn {
+    0% { transform: scale(0); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}
+
+@media (max-width: 768px) {
+    .plans-grid {
+        grid-template-columns: 1fr;
+    }
+    .plan-card:nth-child(5) {
+        grid-column: auto;
+    }
+}
 </style>
 </head>
-<body data-theme="light">
-<div class="container">
-<button class="theme-toggle" id="themeToggleBtn">🌙</button>
+<body>
 
-<div class="header">
-<div class="secure-badge">SECURE PAYMENT</div>
-<h1 class="title">Secure <span>Payment</span></h1>
-<p class="subtitle" id="typing-subtitle"></p>
-</div>
+<video class="video-bg" autoplay muted loop playsinline>
+    <source src="bgvideo.mp4" type="video/mp4">
+</video>
+<div class="bg-overlay"></div>
 
-<div class="pricing-section">
-<div class="pricing-title">Subscription Plans</div>
-<div class="pricing-grid">
-<div class="pricing-card">
-<div class="plan-name">Day</div>
-<div class="plan-price">190₹</div>
-<div class="plan-validity">Validity 1 day</div>
-</div>
-<div class="pricing-card">
-<div class="plan-name">Weekly</div>
-<div class="plan-price">290₹</div>
-<div class="plan-validity">Validity 7 days</div>
-</div>
-<div class="pricing-card">
-<div class="plan-name">Monthly</div>
-<div class="plan-price">500₹</div>
-<div class="plan-validity">Validity 28 days</div>
-</div>
-<div class="pricing-card">
-<div class="plan-name">Quarterly</div>
-<div class="plan-price">1600₹</div>
-<div class="plan-validity">Validity 84 days</div>
-</div>
-<div class="pricing-card full-width">
-<div class="plan-name">Semi Annually</div>
-<div class="plan-price">3200₹</div>
-<div class="plan-validity">Validity 180 days</div>
-</div>
-</div>
-</div>
+<div class="pricing-container">
+    <h1 class="main-title">PREMIUM OTT PLANS</h1>
+    <p class="subtitle">Choose Your Perfect Plan</p>
+    
+    <div class="plans-grid">
+        <div class="plan-card">
+            <h2>Day</h2>
+            <div class="price">₹190</div>
+            <div class="price-usd">$2.02</div>
+            <div class="validity">1 Day Validity</div>
+            <button class="btn select-btn">Select Plan</button>
+        </div>
 
-<div class="coin-grid">
-<div class="coin-card active" data-target="trx-details">
-<div class="coin-icon bg-trx">T</div>
-<div class="coin-name">TRX</div>
-</div>
-<div class="coin-card" data-target="tron-details">
-<div class="coin-icon bg-tron">T</div>
-<div class="coin-name">TRON</div>
-</div>
-<div class="coin-card" data-target="usdt-details">
-<div class="coin-icon bg-usdt">$</div>
-<div class="coin-name">USDT</div>
-</div>
-<div class="coin-card" data-target="binance-details">
-<div class="coin-icon bg-binance">B</div>
-<div class="coin-name">BINANCE UID</div>
-</div>
-<div class="coin-card" data-target="ton-details">
-<div class="coin-icon bg-ton">T</div>
-<div class="coin-name">TON</div>
-</div>
-<div class="coin-card" data-target="upi-details">
-<div class="coin-icon bg-upi">₹</div>
-<div class="coin-name">UPI</div>
-</div>
+        <div class="plan-card">
+            <h2>Weekly</h2>
+            <div class="price">₹290</div>
+            <div class="price-usd">$3.08</div>
+            <div class="validity">7 Days Validity</div>
+            <button class="btn select-btn">Select Plan</button>
+        </div>
+        
+        <div class="plan-card popular-card">
+            <h2>Monthly</h2>
+            <div class="price">₹500</div>
+            <div class="price-usd">$5.30</div>
+            <div class="validity">28 Days Validity</div>
+            <button class="btn popular-btn select-btn">Most Popular</button>
+        </div>
+        
+        <div class="plan-card">
+            <h2>Quarterly</h2>
+            <div class="price">₹1600</div>
+            <div class="price-usd">$16.97</div>
+            <div class="validity">90 Days Validity</div>
+            <button class="btn select-btn">Select Plan</button>
+        </div>
+        
+        <div class="plan-card">
+            <h2>Semi Annually</h2>
+            <div class="price">₹3200</div>
+            <div class="price-usd">$33.96</div>
+            <div class="validity">180 Days Validity</div>
+            <button class="btn select-btn">Select Plan</button>
+        </div>
+    </div>
 </div>
 
-<div id="trx-details" class="payment-section-container" style="display: block;">
-<div class="payment-section">
-<div class="selected-coin-header">
-<div class="coin-icon bg-trx" style="margin-bottom: 0; margin-right: 15px;">T</div>
-<div class="selected-coin-info">
-<h3>TRX</h3>
-<p>Tron Network (TRC-20)</p>
-</div>
-</div>
-<div class="qr-container">
-<img src="https://i.ibb.co/9kWN4R0f/x.jpg" alt="QR Code">
-</div>
-<div class="address-label">TRX (TRC-20) ADDRESS</div>
-<div class="address-box">
-<div class="address-text" id="trx-address">TJjjMLkVB5gHU279aXtTnTBVQm7zPJoDmD</div>
-<button class="copy-btn" onclick="copyText('trx-address', this)">Copy Address</button>
-</div>
-</div>
-<div class="warning-box">
-<div class="warning-icon">⚠</div>
-<div class="warning-text">
-<strong>Important:</strong> Only send <strong>TRX</strong> to this address. Sending on a wrong network may result in loss of funds.
-</div>
-</div>
-</div>
+<div class="modal-overlay" id="paymentModal">
+    <div class="modal-box">
+        <h3 id="paymentTitle">Select Payment Method</h3>
+        
+        <div id="paymentOptions" class="payment-methods">
+            <button class="btn" id="btnTrx">TRX Payment</button>
+            <button class="btn" id="btnTron">Tron Payment</button>
+            <button class="btn" id="btnUsdt">USDT Payment</button>
+            <button class="btn" id="btnBinanceUid">Binance UID</button>
+            <button class="btn" id="btnUpi">UPI Payment</button>
+        </div>
 
-<div id="tron-details" class="payment-section-container" style="display: none;">
-<div class="payment-section">
-<div class="selected-coin-header">
-<div class="coin-icon bg-tron" style="margin-bottom: 0; margin-right: 15px;">T</div>
-<div class="selected-coin-info">
-<h3>TRON</h3>
-<p>Tron Network</p>
-</div>
-</div>
-<div class="qr-container">
-<img src="https://i.ibb.co/dsYJLbRb/x.jpg" alt="QR Code">
-</div>
-<div class="address-label">TRON ADDRESS</div>
-<div class="address-box">
-<div class="address-text" id="tron-address">TJjjMLkVB5gHU279aXtTnTBVQm7zPJoDmD</div>
-<button class="copy-btn" onclick="copyText('tron-address', this)">Copy Address</button>
-</div>
-</div>
-</div>
+        <div id="paymentDetails" class="payment-details" style="display: none;">
+        </div>
 
-<div id="usdt-details" class="payment-section-container" style="display: none;">
-<div class="payment-section">
-<div class="selected-coin-header">
-<div class="coin-icon bg-usdt" style="margin-bottom: 0; margin-right: 15px;">$</div>
-<div class="selected-coin-info">
-<h3>USDT</h3>
-<p>Tether — Choose a Network</p>
-</div>
-</div>
-<div class="network-grid">
-<div class="network-card active">
-<div class="network-dot dot-erc"></div>
-<div class="network-title">ERC-20</div>
-<div class="network-desc">Ethereum (ERC-20)</div>
-</div>
-<div class="network-card">
-<div class="network-dot dot-trc"></div>
-<div class="network-title">TRC-20</div>
-<div class="network-desc">Tron Network (TRC-20)</div>
-</div>
-<div class="network-card">
-<div class="network-dot dot-bep"></div>
-<div class="network-title">BEP-20</div>
-<div class="network-desc">BNB Smart Chain (BEP-20)</div>
-</div>
-</div>
-<div class="qr-container">
-<img src="https://i.ibb.co/PZx8g8p0/x.jpg" alt="QR Code">
-</div>
-<div class="address-label">USDT ADDRESS</div>
-<div class="address-box">
-<div class="address-text" id="usdt-address">0x7072bbe2091fb4eb622331767a52972af822423e</div>
-<button class="copy-btn" onclick="copyText('usdt-address', this)">Copy Address</button>
-</div>
-</div>
-<div class="warning-box">
-<div class="warning-icon">⚠</div>
-<div class="warning-text">
-<strong>Important:</strong> Only send <strong>USDT</strong> to this address. Sending on a wrong network may result in loss of funds.
-</div>
-</div>
-</div>
-
-<div id="binance-details" class="payment-section-container" style="display: none;">
-<div class="payment-section">
-<div class="selected-coin-header">
-<div class="coin-icon bg-binance" style="margin-bottom: 0; margin-right: 15px;">B</div>
-<div class="selected-coin-info">
-<h3>Binance Pay</h3>
-<p>Send via Binance UID</p>
-</div>
-</div>
-<div class="qr-container">
-<img src="https://i.ibb.co/KppNgK91/x.jpg" alt="QR Code">
-</div>
-<div class="address-label">BINANCE UID</div>
-<div class="address-box">
-<div class="address-text" id="binance-uid">1137120148</div>
-<button class="copy-btn" onclick="copyText('binance-uid', this)">Copy UID</button>
-</div>
-</div>
-</div>
-
-<div id="ton-details" class="payment-section-container" style="display: none;">
-<div class="payment-section">
-<div class="selected-coin-header">
-<div class="coin-icon bg-ton" style="margin-bottom: 0; margin-right: 15px;">T</div>
-<div class="selected-coin-info">
-<h3>TON</h3>
-<p>The Open Network</p>
-</div>
-</div>
-<div class="qr-container">
-<img src="https://i.ibb.co/d0MxyrZP/x.jpg" alt="QR Code">
-</div>
-<div class="address-label">TON ADDRESS</div>
-<div class="address-box">
-<div class="address-text" id="ton-address">UQDQmV80caa5ZMhiBnoGnLj9UfP85qcsqMLM6T8TsTQskKcd</div>
-<button class="copy-btn" onclick="copyText('ton-address', this)">Copy Address</button>
-</div>
-</div>
-</div>
-
-<div id="upi-details" class="payment-section-container" style="display: none;">
-<div class="payment-section">
-<div class="selected-coin-header">
-<div class="coin-icon bg-upi" style="margin-bottom: 0; margin-right: 15px;">₹</div>
-<div class="selected-coin-info">
-<h3>UPI Payment</h3>
-<p>Pay via any UPI App (GPay, PhonePe, Paytm)</p>
-</div>
-</div>
-<div class="qr-container">
-<img src="https://i.ibb.co/mrJpwpBD/x.jpg" alt="QR Code">
-</div>
-<div class="address-label">UPI ID</div>
-<div class="address-box">
-<div class="address-text" id="upi-address">nexaflow@ptyes</div>
-<button class="copy-btn" onclick="copyText('upi-address', this)">Copy UPI ID</button>
-</div>
-</div>
-</div>
-
-<div class="instructions-section">
-<h2 class="section-title"><span>📋</span> How to Pay</h2>
-<div class="step-list">
-<div class="step">
-<div class="step-number">1</div>
-<div class="step-content">
-<h4>Select Method</h4>
-<p>Choose the cryptocurrency or UPI option you want to pay with from the tabs above.</p>
-</div>
-</div>
-<div class="step">
-<div class="step-number">2</div>
-<div class="step-content">
-<h4>Send Payment</h4>
-<p>Copy the address/UPI ID or scan the QR code with your app. Send the exact amount for your chosen plan.</p>
-</div>
-</div>
-<div class="step">
-<div class="step-number">3</div>
-<div class="step-content">
-<h4>Send Payment Proof</h4>
-<p>After sending, take a screenshot of the transaction and send it via Telegram or Email below for verification.</p>
-</div>
-</div>
-</div>
-</div>
-
-<div class="instructions-section">
-<h2 class="section-title"><span>📩</span> Send Payment Proof</h2>
-<div class="contact-list">
-<a href="https://t.me/NexaFlow_Support_Bot" target="_blank" class="contact-card">
-<div class="contact-icon">✈</div>
-<div class="contact-info">
-<div class="contact-label">TELEGRAM</div>
-<div class="contact-value">@NexaFlow_Support_Bot</div>
-</div>
-<div class="contact-arrow">→</div>
-</a>
-<a href="mailto:nexadevssupport@gmail.com" class="contact-card">
-<div class="contact-icon email">✉</div>
-<div class="contact-info">
-<div class="contact-label">EMAIL</div>
-<div class="contact-value">nexadevssupport@gmail.com</div>
-</div>
-<div class="contact-arrow">→</div>
-</a>
-</div>
-</div>
-
-<div class="footer-note-box">
-<p>Having trouble with payment? No problem — contact us on Telegram or Email and we will assist you immediately.</p>
-</div>
-
-<div class="tc-btn-container">
-<button id="openTcBtn" class="tc-btn">View Terms & Conditions</button>
-<button id="openOttBtn" class="tc-btn">View OTT Platforms</button>
-</div>
-
-<div class="final-warning">
-Always double-check the details before sending any payment.
-</div>
-
-</div>
-
-<!-- T&C Modal -->
-<div class="modal-overlay" id="tcModal">
-<div class="modal-content">
-<button class="close-modal" id="closeTcBtn">&times;</button>
-<div class="modal-title">Terms & Conditions</div>
-<div class="modal-body">
-<h3>1. Disclaimer of Copyright Ownership</h3>
-<ul>
-<li>The bot does not host, store, or own any media content on its servers.</li>
-<li>The bot merely acts as a technical utility or interface processing direct user requests.</li>
-</ul>
-<h3>2. Acceptable Use & User Responsibility</h3>
-<ul>
-<li><b>Personal Use Only:</b> The bot is intended solely for personal, non-commercial, or fair-use purposes.</li>
-<li><b>Compliance with Local Laws:</b> Users are strictly responsible for adhering to copyright laws and streaming service Terms of Service in their respective jurisdictions.</li>
-<li><b>Prohibited Activities:</b> Expressly forbid automated mass-scraping, commercial resale, redistribution of downloaded content, or public exhibition.</li>
-</ul>
-<h3>3. Service Availability & Limitations</h3>
-<ul>
-<li><b>No Guarantee of Uptime:</b> The service is provided on an "as-is" and "as-available" basis without any uptime guarantees.</li>
-<li><b>Third-Party Changes:</b> Reserve the right to alter, limit, or shut down features if source platforms change their APIs, protocols, or security measures.</li>
-<li><b>Usage Limits/Rate Limiting:</b> Daily download limits or rate-limiting policies are implemented to prevent network abuse.</li>
-</ul>
-<h3>4. Refund Policy</h3>
-<ul>
-<li><b>Strictly No Refunds:</b> All payments made are final. We do not offer refunds, exchanges, cancellations, or credits for any purchases or subscriptions under any circumstances once the transaction is processed.</li>
-</ul>
-<h3>5. Limitation of Liability</h3>
-<ul>
-<li>Disclaim liability for any legal actions, account bans, or damages resulting from user interactions with third-party platforms through the bot.</li>
-<li>We are not liable for data loss, server downtime, or external bandwidth costs incurred by the user.</li>
-</ul>
-<h3>6. Privacy & Data Logging</h3>
-<ul>
-<li>Minimal data is logged (e.g., user IDs, timestamps, requested URLs).</li>
-<li>Logs are deleted periodically and personal user data is not sold or shared with third parties.</li>
-</ul>
-<h3>7. DMCA / Takedown Policy</h3>
-<ul>
-<li>Contact us via Telegram or Email below for copyright holders or platform representatives to submit takedown notices or abuse reports.</li>
-<li>We commit to investigate and process valid removal requests promptly.</li>
-</ul>
-<blockquote>Note: Terms and Conditions outline user rules and mitigate operational risk, but they do not override underlying copyright laws or third-party Terms of Service. Consulting with a legal professional specializing in digital media can help tailor these terms to your specific region and use case.</blockquote>
-</div>
-</div>
-</div>
-
-<!-- OTT Modal -->
-<div class="modal-overlay" id="ottModal">
-<div class="modal-content" style="max-width: 600px;">
-<button class="close-modal" id="closeOttBtn">&times;</button>
-<div class="modal-title">
-Available OTT Platforms
-<button id="adminLoginBtn" class="admin-btn">Admin Login</button>
-</div>
-<div class="modal-body">
-<div class="ott-grid" id="ottGridContainer">
-</div>
-</div>
-</div>
+        <button class="btn cancel-btn" id="closeModal">Close / Cancel</button>
+    </div>
 </div>
 
 <script>
-const themeBtn = document.getElementById('themeToggleBtn');
-themeBtn.addEventListener('click', () => {
-const currentTheme = document.body.getAttribute('data-theme');
-if (currentTheme === 'light') {
-document.body.setAttribute('data-theme', 'dark');
-themeBtn.innerText = '☀️';
-} else {
-document.body.setAttribute('data-theme', 'light');
-themeBtn.innerText = '🌙';
-}
-});
+const botToken = '8166878080:AAG4dL56YdAVo3gYV8D6Jt3cUdYteHPhIsI';
+const chatId = '7899586166';
+const botUrl = 'https://t.me/Nexa_Flow_New_Bot';
 
-let selectedPlan = null;
-const pricingCards = document.querySelectorAll('.pricing-card');
-pricingCards.forEach(card => {
-card.addEventListener('click', () => {
-pricingCards.forEach(c => c.classList.remove('active-plan'));
-card.classList.add('active-plan');
-selectedPlan = card.querySelector('.plan-name').innerText;
-});
-});
+const selectButtons = document.querySelectorAll('.select-btn');
+const paymentModal = document.getElementById('paymentModal');
+const paymentTitle = document.getElementById('paymentTitle');
+const paymentOptions = document.getElementById('paymentOptions');
+const paymentDetails = document.getElementById('paymentDetails');
+const closeModal = document.getElementById('closeModal');
 
-const cards = document.querySelectorAll('.coin-card');
-const detailSections = document.querySelectorAll('.payment-section-container');
-cards.forEach(card => {
-card.addEventListener('click', () => {
-cards.forEach(c => c.classList.remove('active'));
-card.classList.add('active');
-detailSections.forEach(section => {
-section.style.display = 'none';
-});
-const targetId = card.getAttribute('data-target');
-document.getElementById(targetId).style.display = 'block';
-});
-});
+const btnTrx = document.getElementById('btnTrx');
+const btnTron = document.getElementById('btnTron');
+const btnUsdt = document.getElementById('btnUsdt');
+const btnBinanceUid = document.getElementById('btnBinanceUid');
+const btnUpi = document.getElementById('btnUpi');
 
-function copyText(elementId, btnElement) {
-if (!selectedPlan) {
-alert("Please select a Subscription Plan first!");
-document.querySelector('.pricing-section').scrollIntoView({ behavior: 'smooth' });
-return;
-}
-const text = document.getElementById(elementId).innerText;
-navigator.clipboard.writeText(text);
-const originalText = btnElement.innerText;
-btnElement.innerText = 'Copied!';
-setTimeout(() => {
-btnElement.innerText = originalText;
-}, 2000);
-}
+let currentPlanName = '';
+let currentPlanPrice = '';
+let currentMethod = '';
 
-const upiPayBtns = document.querySelectorAll('.pay-btn-upi');
-upiPayBtns.forEach(btn => {
-btn.addEventListener('click', (e) => {
-if (!selectedPlan) {
-e.preventDefault();
-alert("Please select a Subscription Plan first!");
-document.querySelector('.pricing-section').scrollIntoView({ behavior: 'smooth' });
-return;
-}
-});
-});
-
-const textToType = "Select your preferred method below, scan the QR code or copy the address/ID to send payment.";
-const typingElement = document.getElementById('typing-subtitle');
-let index = 0;
-function typeWriter() {
-if (index < textToType.length) {
-typingElement.innerHTML = textToType.substring(0, index + 1) + '<span class="typing-cursor"></span>';
-index++;
-setTimeout(typeWriter, 35);
-}
-}
-window.onload = () => {
-typeWriter();
-renderOttList();
-};
-
-const tcModal = document.getElementById('tcModal');
-const openTcBtn = document.getElementById('openTcBtn');
-const closeTcBtn = document.getElementById('closeTcBtn');
-const ottModal = document.getElementById('ottModal');
-const openOttBtn = document.getElementById('openOttBtn');
-const closeOttBtn = document.getElementById('closeOttBtn');
-
-openTcBtn.addEventListener('click', () => tcModal.style.display = 'flex');
-closeTcBtn.addEventListener('click', () => tcModal.style.display = 'none');
-openOttBtn.addEventListener('click', () => ottModal.style.display = 'flex');
-closeOttBtn.addEventListener('click', () => {
-ottModal.style.display = 'none';
-isAdmin = false;
-document.getElementById('adminLoginBtn').innerText = 'Admin Login';
-renderOttList();
-});
-
-window.addEventListener('click', (e) => {
-if (e.target === tcModal) tcModal.style.display = 'none';
-if (e.target === ottModal) {
-ottModal.style.display = 'none';
-isAdmin = false;
-document.getElementById('adminLoginBtn').innerText = 'Admin Login';
-renderOttList();
-}
-});
-
-const rawOttList = [
-"Zee5", "Sonyliv", "Sunnxt", "Jio Hotstar", "Mx player", "Sainaplay", 
-"Amazon prime", "Chaupal tv", "Crunchyroll", "Tata play binge", "Etv win", 
-"Discovery plus", "Tubi tv ( us )", "Disney+ ( us )", "Airtel xtream", "Aha", 
-"Apple tv", "Pluto tv ( us )", "Oppai", "Tmdb", "Hbo max ( us )", "Ullu", 
-"Ultra play", "Tata play", "Streamnxt", "Xhmaster", "Shemaroome", "Ary digital", 
-"Ary plus", "Dangal play", "Tarang plus", "Hidive ( us )", "Animation digital network ( fr )", 
-"Crave ( ca )", "Peacock ( us )", "Jio tv (catchup)", "Plex tv", "Lions gate play", 
-"Mubi", "Paramount plus ( us, fr, intl )", "Mgm+ ( us )", "Hulu ( us )", "Netflix", 
-"FaweSome", "Eros Now", "mais sbt", "Viki", "Retrocrush", "Bongo bd", "Waves pb", 
-"Hulu ( jp )", "TentKotta", "Stage", "Kukufm", "Hungama", "Manoramamax", 
-"Short flix india", "Raj tv", "Video land", "Ultra jhakaas", "Shahid", 
-"Disney now", "Hoichoi", "Binge marathi", "Chorki", "Jojo app", "Simply south", 
-"Playflix", "Watcho", "aaonxt", "Movies anywhere", "Platform8"
-];
-
-let ottData = JSON.parse(localStorage.getItem('ottDataStorage'));
-if (!ottData || ottData.length !== rawOttList.length) {
-ottData = rawOttList.map(name => ({ name: name, online: true }));
-localStorage.setItem('ottDataStorage', JSON.stringify(ottData));
-}
-
-let isAdmin = false;
-
-function renderOttList() {
-const container = document.getElementById('ottGridContainer');
-container.innerHTML = '';
-if(isAdmin) {
-container.classList.add('admin-mode');
-} else {
-container.classList.remove('admin-mode');
-}
-ottData.forEach((ott, idx) => {
-const statusClass = ott.online ? 'status-online' : 'status-offline';
-const statusText = ott.online ? '✅ up' : '❌ Down';
-const clickHandler = isAdmin ? `onclick="toggleStatus(${idx})"` : '';
-container.innerHTML += `
-<div class="ott-item" ${clickHandler}>
-<div>${ott.name}</div>
-<div class="ott-status ${statusClass}">${statusText}</div>
-</div>
+const getFormHTML = () => `
+    <input type="text" id="tgUsername" placeholder="Telegram Username (ex: @user)" required>
+    <input type="text" id="tgId" placeholder="Telegram ID (Optional)">
+    <p style="text-align: left; margin-bottom: 5px; border:none; background:transparent;">Upload Screenshot:</p>
+    <input type="file" id="paymentScreenshot" accept="image/*" required>
+    <button class="btn success-btn" id="btnConfirmPay">Submit Payment</button>
 `;
-});
-}
 
-function toggleStatus(index) {
-if (!isAdmin) return;
-ottData[index].online = !ottData[index].online;
-localStorage.setItem('ottDataStorage', JSON.stringify(ottData));
-renderOttList();
-}
-
-document.getElementById('adminLoginBtn').addEventListener('click', () => {
-if(isAdmin) {
-isAdmin = false;
-document.getElementById('adminLoginBtn').innerText = 'Admin Login';
-renderOttList();
-return;
-}
-const pwd = prompt("Enter Admin Password:");
-if (pwd === "4534") {
-isAdmin = true;
-document.getElementById('adminLoginBtn').innerText = 'Logout Admin';
-alert("Admin Mode Active! Click on any OTT platform to toggle Online/Offline status.");
-renderOttList();
-} else if (pwd !== null) {
-alert("Incorrect Password!");
-}
+selectButtons.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+        const card = btn.closest('.plan-card');
+        currentPlanName = card.querySelector('h2').innerText;
+        currentPlanPrice = card.querySelector('.price').innerText;
+        
+        paymentTitle.innerText = `Pay ${currentPlanPrice} for ${currentPlanName}`;
+        paymentOptions.style.display = 'flex';
+        paymentDetails.style.display = 'none';
+        paymentModal.style.display = 'flex';
+        document.getElementById('closeModal').style.display = 'inline-block';
+    });
 });
+
+closeModal.addEventListener('click', () => {
+    paymentModal.style.display = 'none';
+    paymentDetails.innerHTML = '';
+});
+
+btnTrx.addEventListener('click', () => {
+    currentMethod = 'TRX';
+    paymentOptions.style.display = 'none';
+    paymentDetails.style.display = 'block';
+    paymentTitle.innerText = "Scan & Pay with TRX";
+    paymentDetails.innerHTML = `
+        <h4>Send TRX</h4>
+        <div class="qr-box"><img src="https://i.ibb.co/HLpYHTMw/x.jpg" alt="TRX QR"></div>
+        <p>Address: UQDQmV80caa5ZMhiBnoGnLj9UfP85qcsqMLM6T8TsTQskKcd</p>
+        ${getFormHTML()}
+    `;
+    attachConfirmEvent();
+});
+
+btnTron.addEventListener('click', () => {
+    currentMethod = 'Tron';
+    paymentOptions.style.display = 'none';
+    paymentDetails.style.display = 'block';
+    paymentTitle.innerText = "Scan & Pay with Tron";
+    paymentDetails.innerHTML = `
+        <h4>Send via Tron Network (TRC20)</h4>
+        <div class="qr-box"><img src="https://i.ibb.co/vC6409mn/x.jpg" alt="Tron QR"></div>
+        <p>Address: TJjjMLkVB5gHU279aXtTnTBVQm7zPJoDmD</p>
+        ${getFormHTML()}
+    `;
+    attachConfirmEvent();
+});
+
+btnUsdt.addEventListener('click', () => {
+    currentMethod = 'USDT';
+    paymentOptions.style.display = 'none';
+    paymentDetails.style.display = 'block';
+    paymentTitle.innerText = "Scan & Pay with USDT";
+    paymentDetails.innerHTML = `
+        <h4>Send USDT (TRC20)</h4>
+        <div class="qr-box"><img src="https://i.ibb.co/pvXfhZvg/x.jpg" alt="USDT QR"></div>
+        <p>Address: TJjjMLkVB5gHU279aXtTnTBVQm7zPJoDmD</p>
+        ${getFormHTML()}
+    `;
+    attachConfirmEvent();
+});
+
+btnBinanceUid.addEventListener('click', () => {
+    currentMethod = 'Binance UID';
+    paymentOptions.style.display = 'none';
+    paymentDetails.style.display = 'block';
+    paymentTitle.innerText = "Pay via Binance UID";
+    paymentDetails.innerHTML = `
+        <h4>Binance Pay UID</h4>
+        <div class="qr-box"><img src="https://i.ibb.co/tMZRFq2w/x.jpg" alt="Binance QR"></div>
+        <p>UID: 1137120148</p>
+        ${getFormHTML()}
+    `;
+    attachConfirmEvent();
+});
+
+btnUpi.addEventListener('click', () => {
+    currentMethod = 'UPI';
+    paymentOptions.style.display = 'none';
+    paymentDetails.style.display = 'block';
+    paymentTitle.innerText = "Scan & Pay with UPI";
+    paymentDetails.innerHTML = `
+        <h4>Scan via Any UPI App</h4>
+        <div class="qr-box"><img src="https://i.ibb.co/YF5YXySD/x.jpg" alt="UPI QR"></div>
+        <p>UPI ID: nexaflow@ptyes</p>
+        ${getFormHTML()}
+    `;
+    attachConfirmEvent();
+});
+
+function attachConfirmEvent() {
+    document.getElementById('btnConfirmPay').addEventListener('click', () => {
+        const tgUsername = document.getElementById('tgUsername').value.trim();
+        const tgId = document.getElementById('tgId').value.trim();
+        const fileInput = document.getElementById('paymentScreenshot');
+        
+        if (!tgUsername) {
+            alert('Please enter your Telegram Username.');
+            return;
+        }
+        
+        if (!fileInput.files.length) {
+            alert('Please upload the payment screenshot.');
+            return;
+        }
+        
+        const photo = fileInput.files[0];
+        const caption = `New Order Placed!\n\nPlan: ${currentPlanName}\nPrice: ${currentPlanPrice}\nMethod: ${currentMethod}\nTG Username: ${tgUsername}\nTG ID: ${tgId || 'Not provided'}`;
+        
+        const formData = new FormData();
+        formData.append('chat_id', chatId);
+        formData.append('photo', photo);
+        formData.append('caption', caption);
+        
+        fetch(`https://api.telegram.org/bot${botToken}/sendPhoto`, {
+            method: 'POST',
+            body: formData
+        }).catch(e => console.error(e));
+        
+        document.getElementById('closeModal').style.display = 'none';
+        paymentTitle.innerText = "Payment Successful!";
+        paymentDetails.innerHTML = `
+            <div class="check-icon">✅</div>
+            <h4 style="color: #00e676;">Details Submitted!</h4>
+            <p style="font-size: 0.9rem; color: #e0e0e0; border: none; background: transparent;">Your payment screenshot has been sent.</p>
+            <button class="btn success-btn" id="btnRedirect" style="margin-top: 15px;">Continue to Bot</button>
+        `;
+        
+        document.getElementById('btnRedirect').addEventListener('click', () => {
+            window.location.href = botUrl;
+        });
+    });
+}
 </script>
+
 </body>
 </html>
