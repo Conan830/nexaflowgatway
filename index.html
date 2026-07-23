@@ -6,14 +6,12 @@
 <title>Premium OTT Plans</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap');
-
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
 }
-
 body {
     background: #050505;
     color: #fff;
@@ -24,7 +22,6 @@ body {
     padding: 50px 20px;
     overflow-x: hidden;
 }
-
 .video-bg {
     position: fixed;
     top: 50%;
@@ -37,7 +34,6 @@ body {
     z-index: -2;
     object-fit: cover;
 }
-
 .bg-overlay {
     position: fixed;
     top: 0;
@@ -47,14 +43,12 @@ body {
     background: rgba(0, 0, 0, 0.7);
     z-index: -1;
 }
-
 .pricing-container {
     max-width: 900px;
     width: 100%;
     text-align: center;
     z-index: 1;
 }
-
 .main-title {
     font-size: 3rem;
     letter-spacing: 3px;
@@ -68,38 +62,32 @@ body {
     filter: drop-shadow(0 0 10px rgba(79,172,254,0.5));
     animation: textGradient 4s ease infinite;
 }
-
 @keyframes textGradient {
     0% { background-position: 0% 50%; }
     50% { background-position: 100% 50%; }
     100% { background-position: 0% 50%; }
 }
-
 .subtitle {
     font-size: 1.2rem;
     letter-spacing: 2px;
-    margin-bottom: 50px;
+    margin-bottom: 40px;
     color: #a0aab2;
     text-transform: uppercase;
     animation: fadeIn 2s ease forwards;
 }
-
 @keyframes fadeIn {
     from { opacity: 0; }
     to { opacity: 1; }
 }
-
 .plans-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 30px;
     justify-items: center;
 }
-
 .plan-card:nth-child(5) {
     grid-column: 1 / -1;
 }
-
 .plan-card {
     background: rgba(255, 255, 255, 0.05);
     backdrop-filter: blur(15px);
@@ -119,18 +107,15 @@ body {
     opacity: 0;
     animation: slideUp 0.8s ease forwards;
 }
-
 .plan-card:nth-child(1) { animation-delay: 0.1s; }
 .plan-card:nth-child(2) { animation-delay: 0.3s; }
 .plan-card:nth-child(3) { animation-delay: 0.5s; }
 .plan-card:nth-child(4) { animation-delay: 0.7s; }
 .plan-card:nth-child(5) { animation-delay: 0.9s; }
-
 @keyframes slideUp {
     from { transform: translateY(40px); opacity: 0; }
     to { transform: translateY(0); opacity: 1; }
 }
-
 .plan-card::before {
     content: '';
     position: absolute;
@@ -143,18 +128,15 @@ body {
     transition: opacity 0.4s ease;
     pointer-events: none;
 }
-
 .plan-card:hover::before {
     opacity: 1;
 }
-
 .plan-card:hover {
     transform: translateY(-10px);
     border-color: #4facfe;
     box-shadow: 0 15px 40px rgba(79, 172, 254, 0.4);
     background: rgba(255, 255, 255, 0.1);
 }
-
 .plan-card h2 {
     font-size: 1.6rem;
     margin-bottom: 20px;
@@ -162,7 +144,6 @@ body {
     color: #e0e0e0;
     letter-spacing: 1px;
 }
-
 .price {
     font-size: 3rem;
     font-weight: 800;
@@ -171,14 +152,12 @@ body {
     text-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
     line-height: 1;
 }
-
 .price-usd {
     font-size: 1.2rem;
     font-weight: 600;
     color: #4facfe;
     margin-bottom: 15px;
 }
-
 .validity {
     font-size: 1rem;
     color: #b0b0b0;
@@ -188,7 +167,6 @@ body {
     padding: 8px 20px;
     border-radius: 20px;
 }
-
 .btn {
     padding: 12px 30px;
     background: transparent;
@@ -203,22 +181,18 @@ body {
     letter-spacing: 1px;
     width: 100%;
 }
-
 .plan-card:hover .btn {
     background: #4facfe;
     color: #fff;
     box-shadow: 0 0 15px rgba(79, 172, 254, 0.6);
 }
-
 .popular-card {
     border-color: rgba(79,172,254,0.5);
 }
-
 .popular-btn {
     background: #4facfe;
     color: #fff;
 }
-
 .modal-overlay {
     position: fixed;
     top: 0;
@@ -232,7 +206,6 @@ body {
     z-index: 100;
     backdrop-filter: blur(5px);
 }
-
 .modal-box {
     background: #1a1a2e;
     padding: 30px;
@@ -245,40 +218,33 @@ body {
     max-height: 90vh;
     overflow-y: auto;
 }
-
 .modal-box h3 {
     margin-bottom: 25px;
     color: #fff;
     font-size: 1.4rem;
 }
-
 .payment-methods {
     display: flex;
     flex-direction: column;
     gap: 12px;
     margin-bottom: 25px;
 }
-
 .payment-methods .btn {
     background: rgba(79, 172, 254, 0.1);
     padding: 10px 20px;
 }
-
 .payment-methods .btn:hover {
     background: #4facfe;
     color: #fff;
 }
-
 .payment-details {
     margin-bottom: 25px;
     text-align: center;
 }
-
 .payment-details h4 {
     margin-bottom: 15px;
     color: #4facfe;
 }
-
 .qr-box {
     width: 180px;
     height: 180px;
@@ -287,13 +253,11 @@ body {
     border-radius: 10px;
     margin: 0 auto 15px auto;
 }
-
 .qr-box img {
     width: 100%;
     height: 100%;
     object-fit: contain;
 }
-
 .payment-details p {
     font-size: 0.95rem;
     color: #e0e0e0;
@@ -304,7 +268,6 @@ body {
     border: 1px dashed rgba(255,255,255,0.2);
     margin-bottom: 15px;
 }
-
 .payment-details input {
     width: 100%;
     padding: 12px;
@@ -315,47 +278,103 @@ body {
     margin-bottom: 15px;
     outline: none;
 }
-
 .payment-details input[type="file"] {
     background: #1a1a2e;
     color: #a0aab2;
     cursor: pointer;
 }
-
 .payment-details input:focus {
     border-color: #4facfe;
 }
-
 .cancel-btn {
     border-color: #ff4b4b;
     color: #ff4b4b;
     margin-top: 10px;
 }
-
 .cancel-btn:hover {
     background: #ff4b4b;
     color: #fff;
     box-shadow: 0 0 15px rgba(255, 75, 75, 0.4);
 }
-
 .success-btn {
     background: #4facfe;
     color: #fff;
 }
-
 .check-icon {
     font-size: 60px;
     color: #00e676;
     margin-bottom: 15px;
     animation: bounceIn 0.5s ease;
 }
-
-@keyframes bounceIn {
-    0% { transform: scale(0); }
-    50% { transform: scale(1.2); }
-    100% { transform: scale(1); }
+#tcModal ul {
+    padding-left: 20px;
+    margin-bottom: 15px;
+    list-style-type: disc;
 }
-
+#tcModal li {
+    margin-bottom: 8px;
+    line-height: 1.4;
+}
+#tcModal h4 {
+    margin-bottom: 10px;
+    font-size: 1rem;
+}
+.ott-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    padding-right: 5px;
+}
+.ott-badge {
+    padding: 5px 12px;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    background: rgba(0, 230, 118, 0.15);
+    color: #00e676;
+    border: 1px solid #00e676;
+}
+.ott-badge.down {
+    background: rgba(255, 75, 75, 0.15);
+    color: #ff4b4b;
+    border: 1px solid #ff4b4b;
+}
+.admin-dashboard-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-height: 50vh;
+    overflow-y: auto;
+    margin-bottom: 20px;
+    text-align: left;
+    padding-right: 5px;
+}
+.admin-ott-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(255,255,255,0.05);
+    padding: 10px;
+    border-radius: 8px;
+}
+.toggle-btn {
+    padding: 5px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 0.8rem;
+}
+.btn-up { background: #00e676; color: #000; }
+.btn-down { background: #ff4b4b; color: #fff; }
+.footer-buttons {
+    margin-top: 40px;
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
 @media (max-width: 768px) {
     .plans-grid {
         grid-template-columns: 1fr;
@@ -367,12 +386,10 @@ body {
 </style>
 </head>
 <body>
-
 <video class="video-bg" autoplay muted loop playsinline>
     <source src="bgvideo.mp4" type="video/mp4">
 </video>
 <div class="bg-overlay"></div>
-
 <div class="pricing-container">
     <h1 class="main-title">PREMIUM OTT PLANS</h1>
     <p class="subtitle">Choose Your Perfect Plan</p>
@@ -385,7 +402,6 @@ body {
             <div class="validity">1 Day Validity</div>
             <button class="btn select-btn">Select Plan</button>
         </div>
-
         <div class="plan-card">
             <h2>Weekly</h2>
             <div class="price">₹290</div>
@@ -393,7 +409,6 @@ body {
             <div class="validity">7 Days Validity</div>
             <button class="btn select-btn">Select Plan</button>
         </div>
-        
         <div class="plan-card popular-card">
             <h2>Monthly</h2>
             <div class="price">₹500</div>
@@ -401,7 +416,6 @@ body {
             <div class="validity">28 Days Validity</div>
             <button class="btn popular-btn select-btn">Most Popular</button>
         </div>
-        
         <div class="plan-card">
             <h2>Quarterly</h2>
             <div class="price">₹1600</div>
@@ -409,7 +423,6 @@ body {
             <div class="validity">90 Days Validity</div>
             <button class="btn select-btn">Select Plan</button>
         </div>
-        
         <div class="plan-card">
             <h2>Semi Annually</h2>
             <div class="price">₹3200</div>
@@ -418,12 +431,92 @@ body {
             <button class="btn select-btn">Select Plan</button>
         </div>
     </div>
+    
+    <div class="footer-buttons">
+        <button class="btn" id="btnShowOtts" style="width: auto; font-size: 0.9rem;">Available OTTs</button>
+        <button class="btn" id="btnTc" style="width: auto; font-size: 0.9rem;">Terms & Conditions</button>
+    </div>
+</div>
+
+<div class="modal-overlay" id="ottListModal">
+    <div class="modal-box" style="max-width: 650px;">
+        <h3 style="color: #4facfe;">Available OTT Platforms</h3>
+        <div class="ott-list" id="ottDisplayList" style="margin-bottom: 25px; max-height: 45vh; overflow-y: auto;">
+        </div>
+        <button class="btn" id="btnAdmin" style="margin-bottom: 10px; width: 100%; border-color: #a529ff; color: #a529ff;">Admin Panel</button>
+        <button class="btn cancel-btn" id="closeOttListModal" style="width:100%;">Close</button>
+    </div>
+</div>
+
+<div class="modal-overlay" id="adminLoginModal" style="z-index: 105;">
+    <div class="modal-box">
+        <h3>Admin Login</h3>
+        <input type="text" id="adminUser" placeholder="Username" style="width:100%; padding:12px; margin-bottom:15px; background:#050505; border:1px solid #4facfe; color:#fff; border-radius:8px; outline:none;">
+        <input type="password" id="adminPass" placeholder="Password" style="width:100%; padding:12px; margin-bottom:15px; background:#050505; border:1px solid #4facfe; color:#fff; border-radius:8px; outline:none;">
+        <button class="btn success-btn" id="loginAdminBtn">Login</button>
+        <button class="btn cancel-btn" id="closeAdminLogin" style="margin-top:10px; width:100%;">Cancel</button>
+    </div>
+</div>
+
+<div class="modal-overlay" id="adminDashboardModal" style="z-index: 110;">
+    <div class="modal-box" style="max-width: 500px;">
+        <h3>Admin Dashboard</h3>
+        <div class="admin-dashboard-list" id="adminOttList">
+        </div>
+        <button class="btn cancel-btn" id="closeAdminDashboard" style="width:100%;">Close Panel</button>
+    </div>
+</div>
+
+<div class="modal-overlay" id="tcModal">
+    <div class="modal-box" style="max-width: 650px; text-align: left;">
+        <h3 style="text-align:center;">Terms & Conditions</h3>
+        <div style="font-size: 0.85rem; color: #e0e0e0; max-height: 60vh; overflow-y: auto; padding-right: 15px; margin-bottom: 20px;">
+            <p style="margin-bottom: 15px; font-style: italic;">Setting up clear Terms and Conditions for a bot or tool is essential to protect yourself, clarify boundaries, and manage user expectations. If your downloader bot operates in an open or educational space, here are the key clauses and terms you should consider including:</p>
+            
+            <h4 style="color: #4facfe;">1. Disclaimer of Copyright Ownership</h4>
+            <ul>
+                <li>Clarify that the bot does not host, store, or own any media content on its servers.</li>
+                <li>State that the bot merely acts as a technical utility or interface processing direct user requests.</li>
+            </ul>
+            <h4 style="color: #4facfe;">2. Acceptable Use & User Responsibility</h4>
+            <ul>
+                <li>Personal Use Only: Specify that the bot is intended solely for personal, non-commercial, or fair-use purposes.</li>
+                <li>Compliance with Local Laws: Mandate that users are strictly responsible for adhering to copyright laws and streaming service Terms of Service in their respective jurisdictions.</li>
+                <li>Prohibited Activities: Expressly forbid automated mass-scraping, commercial resale, redistribution of downloaded content, or public exhibition.</li>
+            </ul>
+            <h4 style="color: #4facfe;">3. Service Availability & Limitations</h4>
+            <ul>
+                <li>No Guarantee of Uptime: State that the service is provided on an "as-is" and "as-available" basis without any uptime guarantees.</li>
+                <li>Third-Party Changes: Reserve the right to alter, limit, or shut down features if source platforms change their APIs, protocols, or security measures.</li>
+                <li>Usage Limits/Rate Limiting: Disclose any daily download limits or rate-limiting policies implemented to prevent network abuse.</li>
+            </ul>
+            <h4 style="color: #4facfe;">4. Limitation of Liability</h4>
+            <ul>
+                <li>Disclaim liability for any legal actions, account bans, or damages resulting from user interactions with third-party platforms through your bot.</li>
+                <li>Specify that you are not liable for data loss, server downtime, or external bandwidth costs incurred by the user.</li>
+            </ul>
+            <h4 style="color: #4facfe;">5. Privacy & Data Logging</h4>
+            <ul>
+                <li>Detail what minimal data is logged (e.g., user IDs, timestamps, requested URLs).</li>
+                <li>Explain if/when logs are deleted and confirm that personal user data is not sold or shared with third parties.</li>
+            </ul>
+            <h4 style="color: #4facfe;">6. DMCA / Takedown Policy</h4>
+            <ul>
+                <li>Provide a direct contact method (such as an email address) for copyright holders or platform representatives to submit takedown notices or abuse reports.</li>
+                <li>Outline a commitment to investigate and process valid removal requests promptly.</li>
+            </ul>
+            <h4 style="color: #4facfe;">7. No Refunds</h4>
+            <ul>
+                <li>All transactions are final. No refunds will be provided for any plans under any circumstances.</li>
+            </ul>
+        </div>
+        <button class="btn cancel-btn" id="closeTcModal" style="width:100%;">Close</button>
+    </div>
 </div>
 
 <div class="modal-overlay" id="paymentModal">
     <div class="modal-box">
         <h3 id="paymentTitle">Select Payment Method</h3>
-        
         <div id="paymentOptions" class="payment-methods">
             <button class="btn" id="btnTrx">TRX Payment</button>
             <button class="btn" id="btnTron">Tron Payment</button>
@@ -431,10 +524,8 @@ body {
             <button class="btn" id="btnBinanceUid">Binance UID</button>
             <button class="btn" id="btnUpi">UPI Payment</button>
         </div>
-
         <div id="paymentDetails" class="payment-details" style="display: none;">
         </div>
-
         <button class="btn cancel-btn" id="closeModal">Close / Cancel</button>
     </div>
 </div>
@@ -444,18 +535,106 @@ const botToken = '8166878080:AAG4dL56YdAVo3gYV8D6Jt3cUdYteHPhIsI';
 const chatId = '7899586166';
 const botUrl = 'https://t.me/Nexa_Flow_New_Bot';
 
+const ottNames = [
+    "Zee5", "Sonyliv", "Sunnxt", "Jio Hotstar", "Mx player", "Sainaplay", "Amazon prime", 
+    "Chaupal tv", "Crunchyroll", "Tata play binge", "Etv win", "Discovery plus", "Tubi tv ( us )", 
+    "Disney+ ( us )", "Airtel xtream", "Aha", "Apple tv", "Pluto tv ( us )", "Oppai", "Tmdb", 
+    "Hbo max ( us )", "Ullu", "Ultra play", "Tata play", "Streamnxt", "Xhmaster", "Shemaroome", 
+    "Ary digital", "Ary plus", "Dangal play", "Tarang plus", "Hidive ( us )", "Animation digital network ( fr )", 
+    "Crave ( ca )", "Peacock ( us )", "Jio tv (catchup)", "Plex tv", "Lions gate play", "Mubi", 
+    "Paramount plus ( us, fr, intl )", "Mgm+ ( us )", "Hulu ( us )", "Netflix", "FaweSome", "Eros Now", 
+    "mais sbt", "Viki", "Retrocrush", "Bongo bd", "Waves pb", "Hulu ( jp )", "TentKotta", "Stage", 
+    "Kukufm", "Hungama", "Manoramamax", "Short flix india", "Raj tv", "Video land", "Ultra jhakaas", 
+    "Shahid", "Disney now", "Hoichoi", "Binge marathi", "Chorki", "Jojo app", "Simply south", 
+    "Playflix", "Watcho", "aaonxt", "Movies anywhere", "Platform8"
+];
+
+let ottData = JSON.parse(localStorage.getItem('ottData'));
+if (!ottData) {
+    ottData = ottNames.map(name => ({ name: name, status: 'UP' }));
+    localStorage.setItem('ottData', JSON.stringify(ottData));
+}
+
+function renderOtts() {
+    const displayList = document.getElementById('ottDisplayList');
+    const adminList = document.getElementById('adminOttList');
+    displayList.innerHTML = '';
+    adminList.innerHTML = '';
+
+    ottData.forEach((ott, index) => {
+        const badge = document.createElement('span');
+        badge.className = `ott-badge ${ott.status === 'DOWN' ? 'down' : ''}`;
+        badge.innerText = `${ott.name} (${ott.status})`;
+        displayList.appendChild(badge);
+
+        const item = document.createElement('div');
+        item.className = 'admin-ott-item';
+        
+        const nameSpan = document.createElement('span');
+        nameSpan.innerText = ott.name;
+        
+        const btn = document.createElement('button');
+        btn.className = `toggle-btn ${ott.status === 'UP' ? 'btn-up' : 'btn-down'}`;
+        btn.innerText = ott.status;
+        btn.onclick = () => {
+            ottData[index].status = ottData[index].status === 'UP' ? 'DOWN' : 'UP';
+            localStorage.setItem('ottData', JSON.stringify(ottData));
+            renderOtts();
+        };
+        
+        item.appendChild(nameSpan);
+        item.appendChild(btn);
+        adminList.appendChild(item);
+    });
+}
+renderOtts();
+
+document.getElementById('btnShowOtts').addEventListener('click', () => {
+    document.getElementById('ottListModal').style.display = 'flex';
+});
+
+document.getElementById('closeOttListModal').addEventListener('click', () => {
+    document.getElementById('ottListModal').style.display = 'none';
+});
+
+document.getElementById('btnAdmin').addEventListener('click', () => {
+    document.getElementById('adminLoginModal').style.display = 'flex';
+});
+
+document.getElementById('closeAdminLogin').addEventListener('click', () => {
+    document.getElementById('adminLoginModal').style.display = 'none';
+});
+
+document.getElementById('closeAdminDashboard').addEventListener('click', () => {
+    document.getElementById('adminDashboardModal').style.display = 'none';
+});
+
+document.getElementById('loginAdminBtn').addEventListener('click', () => {
+    const user = document.getElementById('adminUser').value;
+    const pass = document.getElementById('adminPass').value;
+    
+    if(user === 'admin' && pass === 'admin123') {
+        document.getElementById('adminLoginModal').style.display = 'none';
+        document.getElementById('adminDashboardModal').style.display = 'flex';
+        document.getElementById('adminUser').value = '';
+        document.getElementById('adminPass').value = '';
+    } else {
+        alert('Invalid Username or Password!');
+    }
+});
+
 const selectButtons = document.querySelectorAll('.select-btn');
 const paymentModal = document.getElementById('paymentModal');
 const paymentTitle = document.getElementById('paymentTitle');
 const paymentOptions = document.getElementById('paymentOptions');
 const paymentDetails = document.getElementById('paymentDetails');
 const closeModal = document.getElementById('closeModal');
+const btnTc = document.getElementById('btnTc');
+const tcModal = document.getElementById('tcModal');
+const closeTcModal = document.getElementById('closeTcModal');
 
-const btnTrx = document.getElementById('btnTrx');
-const btnTron = document.getElementById('btnTron');
-const btnUsdt = document.getElementById('btnUsdt');
-const btnBinanceUid = document.getElementById('btnBinanceUid');
-const btnUpi = document.getElementById('btnUpi');
+btnTc.addEventListener('click', () => tcModal.style.display = 'flex');
+closeTcModal.addEventListener('click', () => tcModal.style.display = 'none');
 
 let currentPlanName = '';
 let currentPlanPrice = '';
@@ -470,7 +649,7 @@ const getFormHTML = () => `
 `;
 
 selectButtons.forEach(btn => {
-    btn.addEventListener('click', (e) => {
+    btn.addEventListener('click', () => {
         const card = btn.closest('.plan-card');
         currentPlanName = card.querySelector('h2').innerText;
         currentPlanPrice = card.querySelector('.price').innerText;
@@ -488,75 +667,34 @@ closeModal.addEventListener('click', () => {
     paymentDetails.innerHTML = '';
 });
 
-btnTrx.addEventListener('click', () => {
-    currentMethod = 'TRX';
+function showPaymentMethod(method, title, qrSrc, addressText) {
+    currentMethod = method;
     paymentOptions.style.display = 'none';
     paymentDetails.style.display = 'block';
-    paymentTitle.innerText = "Scan & Pay with TRX";
+    paymentTitle.innerText = title;
     paymentDetails.innerHTML = `
-        <h4>Send TRX</h4>
-        <div class="qr-box"><img src="https://i.ibb.co/HLpYHTMw/x.jpg" alt="TRX QR"></div>
-        <p>Address: UQDQmV80caa5ZMhiBnoGnLj9UfP85qcsqMLM6T8TsTQskKcd</p>
+        <h4>${title}</h4>
+        <div class="qr-box"><img src="${qrSrc}" alt="QR Code"></div>
+        <p>${addressText}</p>
         ${getFormHTML()}
     `;
     attachConfirmEvent();
-});
+}
 
-btnTron.addEventListener('click', () => {
-    currentMethod = 'Tron';
-    paymentOptions.style.display = 'none';
-    paymentDetails.style.display = 'block';
-    paymentTitle.innerText = "Scan & Pay with Tron";
-    paymentDetails.innerHTML = `
-        <h4>Send via Tron Network (TRC20)</h4>
-        <div class="qr-box"><img src="https://i.ibb.co/vC6409mn/x.jpg" alt="Tron QR"></div>
-        <p>Address: TJjjMLkVB5gHU279aXtTnTBVQm7zPJoDmD</p>
-        ${getFormHTML()}
-    `;
-    attachConfirmEvent();
-});
+document.getElementById('btnTrx').addEventListener('click', () => 
+    showPaymentMethod('TRX', 'Scan & Pay with TRX', 'https://i.ibb.co/9kWN4R0f/x.jpg', 'Address: TJjjMLkVB5gHU279aXtTnTBVQm7zPJoDmD'));
 
-btnUsdt.addEventListener('click', () => {
-    currentMethod = 'USDT';
-    paymentOptions.style.display = 'none';
-    paymentDetails.style.display = 'block';
-    paymentTitle.innerText = "Scan & Pay with USDT";
-    paymentDetails.innerHTML = `
-        <h4>Send USDT (TRC20)</h4>
-        <div class="qr-box"><img src="https://i.ibb.co/pvXfhZvg/x.jpg" alt="USDT QR"></div>
-        <p>Address: TJjjMLkVB5gHU279aXtTnTBVQm7zPJoDmD</p>
-        ${getFormHTML()}
-    `;
-    attachConfirmEvent();
-});
+document.getElementById('btnTron').addEventListener('click', () => 
+    showPaymentMethod('Tron', 'Scan & Pay with Tron', 'https://i.ibb.co/vCGqXwXz/x.jpg', 'Address: UQDQmV80caa5ZMhiBnoGnLj9UfP85qcsqMLM6T8TsTQskKcd'));
 
-btnBinanceUid.addEventListener('click', () => {
-    currentMethod = 'Binance UID';
-    paymentOptions.style.display = 'none';
-    paymentDetails.style.display = 'block';
-    paymentTitle.innerText = "Pay via Binance UID";
-    paymentDetails.innerHTML = `
-        <h4>Binance Pay UID</h4>
-        <div class="qr-box"><img src="https://i.ibb.co/tMZRFq2w/x.jpg" alt="Binance QR"></div>
-        <p>UID: 1137120148</p>
-        ${getFormHTML()}
-    `;
-    attachConfirmEvent();
-});
+document.getElementById('btnUsdt').addEventListener('click', () => 
+    showPaymentMethod('USDT', 'Scan & Pay with USDT', 'https://i.ibb.co/PZx8g8p0/x.jpg', 'Address: 0x7072bbe2091fb4eb622331767a52972af822423e'));
 
-btnUpi.addEventListener('click', () => {
-    currentMethod = 'UPI';
-    paymentOptions.style.display = 'none';
-    paymentDetails.style.display = 'block';
-    paymentTitle.innerText = "Scan & Pay with UPI";
-    paymentDetails.innerHTML = `
-        <h4>Scan via Any UPI App</h4>
-        <div class="qr-box"><img src="https://i.ibb.co/YF5YXySD/x.jpg" alt="UPI QR"></div>
-        <p>UPI ID: nexaflow@ptyes</p>
-        ${getFormHTML()}
-    `;
-    attachConfirmEvent();
-});
+document.getElementById('btnBinanceUid').addEventListener('click', () => 
+    showPaymentMethod('Binance UID', 'Pay via Binance UID', 'https://i.ibb.co/KppNgK91/x.jpg', 'UID: 1137120148'));
+
+document.getElementById('btnUpi').addEventListener('click', () => 
+    showPaymentMethod('UPI', 'Scan & Pay with UPI', 'https://i.ibb.co/mrJpwpBD/x.jpg', 'UPI ID: nexaflow@ptyes'));
 
 function attachConfirmEvent() {
     document.getElementById('btnConfirmPay').addEventListener('click', () => {
@@ -568,7 +706,6 @@ function attachConfirmEvent() {
             alert('Please enter your Telegram Username.');
             return;
         }
-        
         if (!fileInput.files.length) {
             alert('Please upload the payment screenshot.');
             return;
@@ -602,6 +739,5 @@ function attachConfirmEvent() {
     });
 }
 </script>
-
 </body>
 </html>
